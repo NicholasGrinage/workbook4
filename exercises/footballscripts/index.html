@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football</title>
+</head>
+<body>
+    <main>
+        <form>
+            <label for="footballTeamsList">Football Team</label>
+        <select id="footballTeamsList">
+          <option value="">Select...</option>
+        </form>
+    </main>
+
+    <script>
+        const teams = [
+ {code:"DAL", name:"Dallas Cowboys" },
+ {code:"DEN", name:"Denver Broncos" },
+ {code:"HOU", name:"Houston Texans"},
+ {code:"KAN", name:"Kansas City Chiefs"},
+ 
+];
+
+const footballTeamsList = document.getElementById("footballTeamsList");
+
+function loadTeamsList() {
+    for (const team of teams) {
+    
+        let option = document.createElement("option")
+        option.textContent = team.name
+        option.value = team.code
+        footballTeamsList.appendChild(option);
+    }
+}
+loadTeamsList()
+    </script>
+</body>
+</html>
