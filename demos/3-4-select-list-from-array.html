@@ -21,6 +21,7 @@
           <option value="AL">Alabama</option>
           o
         </select>
+        <button type="button" id="selectStateButton">Select State</button>
       </form>
     </main>
     <script>
@@ -78,6 +79,7 @@
       ];
       // get html elements into variables
       const statesList = document.getElementById("statesList");
+      const selectStateButton = document.getElementById("selectStateButton")
 
       //write function
       function loadStatesList() {
@@ -92,8 +94,13 @@
 
           statesList.appendChild(option);
         }
+        function displayStateInformation() {
+          console.log(statesList.value);
+        }
       }
       loadStatesList();
+
+      selectStateButton.onclick = displayStateInformation
     </script>
   </body>
 </html>
