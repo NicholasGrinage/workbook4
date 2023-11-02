@@ -82,13 +82,15 @@
       //write function
       function loadStatesList() {
         for (const state of states) {
-          console.log(state);
-        // creates an option element 
+          // creates an option element
           let option = document.createElement("option");
-          option.textContent = "Pennsylvania";
-        //setting the value property is creating an attribute on the option element
-          option.value = "PA";
-          statesList.appendChild(option)
+          option.textContent = state.name;
+          //setting the value property is creating an attribute on the option element
+          option.value = state.abbrev;
+
+          // let option = new Option(state.name, state.abbrev)
+
+          statesList.appendChild(option);
         }
       }
       loadStatesList();
