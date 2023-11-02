@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Football</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <form>
-            <label for="footballTeamsList">Football Team</label>
+      <form>
+        <label for="footballTeamsList">Football Team</label>
         <select id="footballTeamsList">
           <option value="">Select...</option>
-        </form>
-        <button id=""></button>
-        <p id=""></p>
+        </select>
+        <button type="button" id="selectTeamButton">Select Team</button>
+        <p id="teamParagraph"></p>
+      </form>
     </main>
 
     <script>
-        const teams = [
- {code:"DAL", name:"Dallas Cowboys" },
- {code:"DEN", name:"Denver Broncos" },
- {code:"HOU", name:"Houston Texans"},
- {code:"KAN", name:"Kansas City Chiefs"},
- 
-];
+      const teams = [
+        { code: "DAL", name: "Dallas Cowboys" },
+        { code: "DEN", name: "Denver Broncos" },
+        { code: "HOU", name: "Houston Texans" },
+        { code: "KAN", name: "Kansas City Chiefs" },
+      ];
+      const teamTextbox = document.getElementById("teamTextbox");
+      const footballTeamsList = document.getElementById("footballTeamsList");
+      const selectTeamButton = document.getElementById("selectTeamButton");
+      const teamParagraph = document.getElementById("teamParagraph");
 
-const footballTeamsList = document.getElementById("footballTeamsList");
-
-function loadTeamsList() {
-    for (const team of teams) {
-    
-        let option = document.createElement("option")
-        option.textContent = team.name
-        option.value = team.code
-        footballTeamsList.appendChild(option);
-    }
-}
-loadTeamsList()
+      function loadTeamsList() {
+        for (const team of teams) {
+          let option = document.createElement("option");
+          option.textContent = team.name;
+          option.value = team.code;
+          footballTeamsList.appendChild(option);
+        }
+      }
+      function displayTeamInformation() {
+        console.log(footballTeamsList.value);
+      }
+      function teamByName() {
+        let name = footballTeamsList.value;
+        let message = "You selected the Dallas Cowboys (DAL) who play in Arlington, TX";
+        teamParagraph.innerText = message;
+      }
+      loadTeamsList();
+      selectTeamButton.onclick = teamByName;
     </script>
-</body>
+  </body>
 </html>
