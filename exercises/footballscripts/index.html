@@ -9,20 +9,20 @@
     <main>
       <form>
         <label for="footballTeamsList">Football Team</label>
-        <select id="footballTeamsList">
+        <select name="footballTeamsSelect" id="footballTeamsList">
           <option value="">Select...</option>
         </select>
-        <button type="button" id="selectTeamButton">Select Team</button>
+        <button id="selectTeamButton">Select Team</button>
         <p id="teamParagraph"></p>
       </form>
     </main>
 
     <script>
       const teams = [
-        { code: "DAL", name: "Dallas Cowboys" },
-        { code: "DEN", name: "Denver Broncos" },
-        { code: "HOU", name: "Houston Texans" },
-        { code: "KAN", name: "Kansas City Chiefs" },
+        { code: "DAL", name: "Dallas Cowboys", plays: "Arlington, TX" },
+        { code: "DEN", name: "Denver Broncos", plays: "Denver, CO" },
+        { code: "HOU", name: "Houston Texans", plays: "Houston, TX" },
+        { code: "KAN", name: "Kansas City Chiefs", plays: "Kansas City, MO" },
       ];
       const teamTextbox = document.getElementById("teamTextbox");
       const footballTeamsList = document.getElementById("footballTeamsList");
@@ -31,22 +31,28 @@
 
       function loadTeamsList() {
         for (const team of teams) {
-          let option = document.createElement("option");
-          option.textContent = team.name;
-          option.value = team.code;
+          let option = new Option(team.name, team.code);
           footballTeamsList.appendChild(option);
         }
       }
-      function displayTeamInformation() {
-        console.log(footballTeamsList.value);
+      function getTeamByCode(code) {
+        for (const team of teams) if (team.code == code) return team;
       }
-      function teamByName() {
-        let name = footballTeamsList.value;
-        let message = "You selected the Dallas Cowboys (DAL) who play in Arlington, TX";
-        teamParagraph.innerText = message;
+
+      function displayInfo(event) {
+        event.preventDefault();
+        let selectedTeam = getTeamByCode(footballTeamsList.value);
+        console.log(selectedTeam);
       }
+      teamParagraph.innerText = `You selected the ${selectedTeam.name}
+      (${selectedTeam.coed}) who play in ${selectedTeam.plays}`;
+
       loadTeamsList();
-      selectTeamButton.onclick = teamByName;
+
+      if (selectTeamButton) {
+        selectTeamButton.onclick = displayInfo;
+      }
+      window.onload = init;
     </script>
   </body>
 </html>
